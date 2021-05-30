@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Calculator</title>
+</head>
+
+<body>
+
+
+  <div id="calc-container">
+
+    <div id="calc">
+
+      <label class="display-label">
+        <input id="display" />
+      </label>
+
+      <div id="keyboard">
+
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>+</button>
+
+        <!-- ...  -->
+
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>-</button>
+
+        <!-- ...  -->
+
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>*</button>
+
+        <!-- ...  -->
+
+        <button>0</button>
+        <button>.</button>
+        <button>=</button>
+        <button>/</button>
+
+      </div>
+
+      <div id="operations">
+        <form>
+
+          <div class="control">
+            <button id="addOperation">Add operation</button>
+            <button id="add" type="submit">Add</button>
+            <button id="close">Close</button>
+          </div>
+
+          <label>
+            <input type="text" placeholder="@alias" required>
+          </label>
+
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="../src/index.js"></script>
+</body>
+
+</html>
