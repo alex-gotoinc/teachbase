@@ -1,5 +1,6 @@
 const display = document.getElementById('display');
-const addOperationBtn = document.getElementById('addOperation');
+const keyboardButtons = document.querySelectorAll('#keyboard button');
+const addOperationBtn = document.querySelector('#operations button');
 import './main.css';
 
 const addSpacer = (str, interval) => {
@@ -15,7 +16,16 @@ display.addEventListener('input', (e) => {
   e.target.value = addSpacer(trimmed, 4);
 });
 
-addOperationBtn.addEventListener('click', () => {
-  console.log('click!');
+keyboardButtons.forEach(button => {
+  button.addEventListener('click', (event) => {
+    const value = event.target.outerText;
+    
+    console.log(value);
+  })
+});
+
+addOperationBtn.addEventListener('click', (event) => {
+  event.preventDefault();
+  console.log('Add operation!');
 });
 

@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 #calc-container {
   display: flex;
   justify-content: center;
@@ -26,20 +30,21 @@
   flex: 0 1;
   display: flex;
   border-bottom: 1px solid #dcd6d6;
+  background-color: aliceblue;
 }
 
 #calc input#display {
   width: 100%;
   height: auto;
   text-align: right;
-  border: none;
+  border: 1px solid #dcd6d6;
   outline: none;
   color: #000;
   background: #fff;
   font-size: 18px;
   font-weight: 500;
   padding: 10px 15px;
-  border-bottom: 1px solid #fff;
+  margin: 3px;
 }
 
 #calc > #keyboard,
@@ -101,3 +106,18 @@
 #operations form label > input {
   width: 100%;
 }
+
+.add {
+  display: grid;
+  grid-template-columns: 75% auto;
+  grid-gap: 5px;
+}
+
+.add input {
+  height: 100%;
+  padding-left: 5px;
+  outline: none!important;
+}
+
+
+
