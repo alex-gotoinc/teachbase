@@ -2,12 +2,10 @@ class Calculator {
 
     constructor(
       previousOperandTextElement,
-      currentOperandTextElement,
-      addOperationInputElement
+      currentOperandTextElement
      ) {
         this.previousOperandTextElement = previousOperandTextElement;
         this.currentOperandTextElement = currentOperandTextElement;
-        this.addOperationInputElement = addOperationInputElement;
         this.clear();
     }
 
@@ -59,6 +57,9 @@ class Calculator {
         case '÷':
           computation = prev / current;
           break;
+        case '^':
+          computation = Math.pow(prev, current);
+          break;
         default: return; 
       }
 
@@ -96,7 +97,6 @@ class Calculator {
           this.previousOperandTextElement.innerText = '';
         }
     }
-
 }
 
 const numberButtons = document.querySelectorAll('[data-number]');
@@ -106,12 +106,10 @@ const deleteButton = document.querySelector('[data-delete]');
 const allClearButton = document.querySelector('[data-all-clear]');
 const previousOperandTextElement = document.querySelector('[data-previous-operand]');
 const currentOperandTextElement = document.querySelector('[data-current-operand]');
-const addOperationInputElement = document.querySelector('[data-add-operation]');
 
 const calculator = new Calculator(
   previousOperandTextElement,
   currentOperandTextElement,
-  addOperationInputElement
 );
 
 const callbacks = {
@@ -134,9 +132,6 @@ const callbacks = {
   delete: () => {
     calculator.delete();
     calculator.updateDisplay();
-  },
-  addOperation: () => {
-    calculator.clearInput();
   }
 };
 
@@ -147,26 +142,16 @@ allClearButton.addEventListener('click', () => callbacks.allClear());
 deleteButton.addEventListener('click', () => callbacks.delete());
 
 document.addEventListener('keydown', event => {
+  event.preventDefault();
+
   const code = event.code;
-
-  if (document.activeElement === addOperationInputElement) {
-    switch (code) {
-      case 'Enter':
-        callbacks.addOperation();
-        break;
-      default: return;
-    }
-  } else {
-    event.preventDefault();
-    switch (code) {
-      case 'Backspace':
-        callbacks.delete();
-        break;
-      case 'Enter':
-        callbacks.equal();
-        break;
-      default: return;
-    }
+  switch (code) {
+    case 'Backspace':
+      callbacks.delete();
+      break;
+    case 'Enter':
+      callbacks.equal();
+      break;
+    default: return;
   }
-
 });
