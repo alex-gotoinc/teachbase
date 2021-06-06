@@ -3,6 +3,9 @@ const keyboardButtons = document.querySelectorAll('#keyboard button');
 const addOperationBtn = document.querySelector('#operations button');
 import './main.css';
 
+const INITIAL_DISPLAY_VALUE = 0;
+
+
 const addSpacer = (str, interval) => {
   let result = [];
   for(let i = 0; i < str.length; i += interval) {
@@ -11,21 +14,48 @@ const addSpacer = (str, interval) => {
   return result.join(' ');
 };
 
-display.addEventListener('input', (e) => {
-  const trimmed = e.target.value.split(' ').join('');
-  e.target.value = addSpacer(trimmed, 4);
-});
+window.addEventListener('DOMContentLoaded', () => {
+  
+  
+  display.value = INITIAL_DISPLAY_VALUE;
+  
+  
 
-keyboardButtons.forEach(button => {
-  button.addEventListener('click', (event) => {
-    const value = event.target.outerText;
+  document.addEventListener('keypress', e => {
+    const trimmed = e.target.value.split(' ').join('');
     
-    console.log(value);
-  })
+    // if(trimmed.charAt(0) === '0') {
+    //   display.value = trimmed.slice(1).concat(e.key);
+    // }
+  });
+
+  // display.addEventListener('input', e => {
+  //   const regex = new RegExp(/^[-+]?[0-9]+([-+*/]+[-+]?[0-9]+)*$/);
+  //
+  //   if(regex.test(String(e.target.value).replace(/\s/g, ''))) {
+  //     console.log('нормик')
+  //   } else {
+  //     console.log(':(')
+  //   }
+  //
+  //   const trimmed = e.target.value.split(' ').join('');
+  //   e.target.value = addSpacer(trimmed, 4);
+  // });
+
+  // keyboardButtons.forEach(button => {
+  //   button.addEventListener('click', (event) => {
+  //     const value = event.target.outerText;
+  //
+  //     console.log(value);
+  //   })
+  // });
+
+  // addOperationBtn.addEventListener('click', (event) => {
+  //   event.preventDefault();
+  //   console.log('Add operation!');
+  // });
+
 });
 
-addOperationBtn.addEventListener('click', (event) => {
-  event.preventDefault();
-  console.log('Add operation!');
-});
+
 
